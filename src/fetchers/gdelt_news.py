@@ -6,6 +6,7 @@ GDELT indexes worldwide online news in near-realtime. One request per entity,
 spaced >5 seconds apart per GDELT's rate policy. Each article title is scored
 with VADER; daily article counts also become the "news" time series.
 """
+import hashlib
 import time
 from datetime import datetime, timezone
 
@@ -13,7 +14,7 @@ import requests
 
 API = "https://api.gdeltproject.org/api/v2/doc/doc"
 HEADERS = {"User-Agent": "PULSE-360 portfolio project (github.com/sougatshekhar97-cpu/pulse-360)"}
-RATE_DELAY_S = 5.5
+RATE_DELAY_S = 10.0
 
 
 def fetch(cfg: dict, analyzer) -> tuple[list[tuple], list[tuple]]:
@@ -68,8 +69,11 @@ def fetch(cfg: dict, analyzer) -> tuple[list[tuple], list[tuple]]:
             except ValueError:
                 continue
             sentiment = analyzer.polarity_scores(title)["compound"] if title else 0.0
+            # stable id: Python's hash() is salted per process and would
+            # re-insert the same article as a duplicate on every run
+            url_id = hashlib.md5(url.encode("utf-8")).hexdigest()[:16]
             mention_rows.append((
-                f"news:{hash(url) & 0xFFFFFFFFFFFF:x}",
+                f"news:{url_id}",
                 "news",
                 name,
                 created.isoformat(),
