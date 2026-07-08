@@ -9,7 +9,7 @@ from src.config import DB_PATH, entities, load_config
 st.set_page_config(page_title="PULSE-360 · Marketing Intelligence", page_icon="📡", layout="wide")
 
 # Fixed categorical palette (validated, colorblind-safe order — never cycled).
-SERIES = ["#2a78d6", "#1baf7a", "#eda100", "#008300", "#4a3aa7", "#e34948"]
+SERIES = ["#2a78d6", "#1baf7a", "#eda100", "#008300", "#4a3aa7", "#e34948", "#e87ba4", "#eb6834"]
 DIVERGING = {"up": "#2a78d6", "down": "#e34948"}
 INK = {"primary": "#0b0b0b", "secondary": "#52514e", "muted": "#898781", "grid": "#e1e0d9"}
 
@@ -42,6 +42,12 @@ if not DB_PATH.exists():
     st.stop()
 
 series, mentions, updated = load()
+# Keep only configured entities — stale rows from a previous brand set must
+# not distort share-of-voice or the benchmark table.
+if not series.empty:
+    series = series[series["entity"].isin(ENTS)]
+if not mentions.empty:
+    mentions = mentions[mentions["entity"].isin(ENTS)]
 scores = transform.health_scores(series, mentions, cfg)
 overall, overall_grade = transform.brand_overall(scores, BRAND)
 

@@ -47,7 +47,8 @@ def generate(cfg: dict) -> tuple[list[tuple], list[tuple]]:
 
     rng = random.Random(360)
     ents = entities(cfg)
-    shapes = ["up", "flat", "down"] + ["flat"] * max(len(ents) - 3, 0)
+    cycle = ["up", "flat", "down"]
+    shapes = [cycle[i % 3] for i in range(len(ents))]
     n = int(cfg.get("lookback_days", 90))
     today = date.today()
 

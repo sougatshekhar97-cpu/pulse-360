@@ -13,14 +13,16 @@ against competitors on an interactive Streamlit dashboard.
 > −46% YoY). PULSE-360 transplants that account-management methodology to
 > marketing analytics — momentum, stability, sentiment, and share of voice,
 > combined with explicit weights into one number an executive can act on.
-> The default config tracks Indian telecom brands, because that's the market
-> I managed from the inside.
+> The default config benchmarks **Airtel — the market I managed from the
+> inside — against the world's telecom giants**: Verizon, AT&T, T-Mobile,
+> Vodafone, Deutsche Telekom and China Mobile.
 
 ## What it demonstrates
 
 | Skill | Where |
 |---|---|
 | Multi-source data ingestion (REST APIs, public endpoints) | `src/fetchers/` |
+| Anchor-normalized batching (compare 7 brands on one Google Trends scale) | `src/fetchers/google_trends.py` |
 | Normalizing fragmented sources into one schema | `src/db.py` — one `series` + `mentions` schema for every source |
 | Transformation & derived metrics (pandas) | `src/transform.py` — WoW momentum, volatility, share of voice |
 | NLP sentiment scoring | VADER over community mentions |

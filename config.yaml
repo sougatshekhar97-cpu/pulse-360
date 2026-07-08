@@ -2,8 +2,11 @@
 # The brand you track, plus the competitors it is benchmarked against.
 # Entity order matters: chart colors are assigned in this fixed order.
 #
+# Default setup: Airtel — the market I managed from the inside — benchmarked
+# against the world's telecom giants for global share-of-voice context.
+#
 # news_query: the phrase searched in world news (GDELT). Use a distinctive
-# phrase for short/ambiguous brand names ("Vi" alone would match everything).
+# phrase for short/ambiguous brand names.
 
 brand:
   name: Airtel
@@ -11,12 +14,24 @@ brand:
   news_query: Airtel
 
 competitors:
-  - name: Jio
-    wikipedia_article: Jio
-    news_query: Reliance Jio
-  - name: Vi
-    wikipedia_article: Vodafone_Idea
-    news_query: Vodafone Idea
+  - name: Verizon
+    wikipedia_article: Verizon
+    news_query: Verizon
+  - name: AT&T
+    wikipedia_article: AT&T
+    news_query: AT&T
+  - name: T-Mobile
+    wikipedia_article: T-Mobile_US
+    news_query: T-Mobile
+  - name: Vodafone
+    wikipedia_article: Vodafone
+    news_query: Vodafone
+  - name: Deutsche Telekom
+    wikipedia_article: Deutsche_Telekom
+    news_query: Deutsche Telekom
+  - name: China Mobile
+    wikipedia_article: China_Mobile
+    news_query: China Mobile
 
 # How far back to fetch/keep daily series.
 lookback_days: 90
