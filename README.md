@@ -2,6 +2,8 @@
 
 **Live signals in. One health score out.**
 
+🔴 **Live dashboard:** https://pulse-360-ijsehujby7ckf5mrcs6pds.streamlit.app/
+
 PULSE-360 pulls live data from independent public sources — Google Trends,
 Wikipedia pageviews, GDELT world news — unifies it into one schema, and scores
 every marketing channel with a **weighted Channel Health Score**, benchmarked
@@ -139,11 +141,12 @@ pulse-360/
 └── .github/workflows/refresh-data.yml   # daily scheduled fetch
 ```
 
-## Deploy your own live URL
+## Live deployment
 
-The dashboard runs free on [Streamlit Community Cloud](https://streamlit.io/cloud):
-point it at this repo, main file `app.py`. The committed demo database means
-the app renders immediately; the GitHub Action keeps live data flowing.
+The dashboard is deployed on [Streamlit Community Cloud](https://streamlit.io/cloud):
+**https://pulse-360-ijsehujby7ckf5mrcs6pds.streamlit.app/** — it redeploys
+automatically whenever the daily GitHub Action commits fresh data, so the
+live app is always current with zero infrastructure.
 
 ## License
 
